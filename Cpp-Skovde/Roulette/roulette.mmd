@@ -1,0 +1,35 @@
+graph TD
+    A[[Starta programmet]] --> B[Initialisera saldo till 1000 kr och playAgain till 'y']
+    B --> C[Sätt seed för slumpgenerator]
+    C --> D[/Visa välkomstmeddelande/]
+    D --> E{Är saldo > 0 och playAgain == 'y' eller 'Y'?}
+    E -->|Nej| AC[[Slut]]
+    E -->|Ja| G[/Fråga spelaren om satsning/]
+    G --> H{Är satsningen giltig och <= saldo?}
+    H -->|Nej| I[/Visa felmeddelande/]
+    I --> G
+    H -->|Ja| J[/Fråga spelaren om satsningsalternativ/]
+    J --> K{Är alternativet giltigt?}
+    K -->|Nej| L[/Visa felmeddelande/]
+    L --> J
+    K -->|Ja| M{Valde spelaren specifikt nummer?}
+    M -->|Ja| N[/Fråga om specifikt nummer mellan 1 och 36/]
+    N --> O{Är numret giltigt?}
+    O -->|Nej| P[/Visa felmeddelande/]
+    P --> N
+    O -->|Ja| Q[Generera slumpmässigt nummer]
+    M -->|Nej| Q[Generera slumpmässigt nummer]
+    Q --> R[Tilldela färg baserat på nummer]
+    R --> S[/Visa resultat/]
+    S --> T{Kontrollera om spelaren vann}
+    T -->|Ja| U[Beräkna vinsten och lägg till saldo]
+    T -->|Nej| V[Dra av satsningen från saldo]
+    U --> W[/Visa uppdaterat saldo/]
+    V --> W[/Visa uppdaterat saldo/]
+    W --> X{Är saldot <= 0?}
+    X -->|Ja| AC[[Slut]]
+    X -->|Nej| Z[/Fråga om spela igen/]
+    Z --> AA{Vill spelaren spela igen?}
+    AA -->|Ja| E
+    AA -->|Nej| AB[/Visa slutgiltigt saldo och avsluta/]
+    AB --> AC[[Slut]]
